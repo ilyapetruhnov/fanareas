@@ -1,6 +1,6 @@
 from dagster import asset
 import pandas as pd
-from fanareas.ops.utils import api_call, fetch_data, base_url, get_fields, get_records, get_ids_from_db_col, db_insert, db_upsert
+from fanareas.ops.utils import api_call, fetch_data, base_url, get_fields, get_records, get_ids_from_db_col, db_insert
 from itertools import product
 import datetime
 

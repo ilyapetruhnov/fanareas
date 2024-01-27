@@ -1,0 +1,19 @@
+[32m2024-01-17 11:37:17 +0100[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 35cc3e44-35cc-4369-bf04-e84b86e63b4d - 59781 - LOGS_CAPTURED - Started capturing logs in process (pid: 59781).
+[32m2024-01-17 11:37:17 +0100[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 35cc3e44-35cc-4369-bf04-e84b86e63b4d - 59781 - db_insert_teams - STEP_START - Started execution of step "db_insert_teams".
+[32m2024-01-17 11:37:17 +0100[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 35cc3e44-35cc-4369-bf04-e84b86e63b4d - db_insert_teams - Loading file from: /Users/ilyapetruhnov/Documents/Projects/fanareas/fanareas/tmpip0pos1c/storage/teams_df using PickledObjectFilesystemIOManager...
+[32m2024-01-17 11:37:17 +0100[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 35cc3e44-35cc-4369-bf04-e84b86e63b4d - 59781 - db_insert_teams - ASSET_OBSERVATION - ASSET_OBSERVATION for step db_insert_teams
+[32m2024-01-17 11:37:17 +0100[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 35cc3e44-35cc-4369-bf04-e84b86e63b4d - 59781 - db_insert_teams - LOADED_INPUT - Loaded input "teams_df" using input manager "io_manager", from output "result" of step "teams_df"
+[32m2024-01-17 11:37:17 +0100[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 35cc3e44-35cc-4369-bf04-e84b86e63b4d - 59781 - db_insert_teams - STEP_INPUT - Got input "teams_df" of type "DataFrame". (Type check passed).
+[32m2024-01-17 11:37:17 +0100[0m - dagster - [34mINFO[0m - __ASSET_JOB - 35cc3e44-35cc-4369-bf04-e84b86e63b4d - db_insert_teams -     id  sport_id  country_id  ...      type placeholder       last_played_at
+0  251         1         462  ...  domestic       False  2024-01-13 15:00:00
+1   52         1         462  ...  domestic       False  2024-01-06 15:00:00
+2   30         1         515  ...  domestic       False  2024-01-13 15:00:00
+3  115         1         462  ...  domestic       False  2024-01-16 19:45:00
+4   14         1         462  ...  domestic       False  2024-01-14 16:30:00
+
+[5 rows x 12 columns]
+[32m2024-01-17 11:37:18 +0100[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 35cc3e44-35cc-4369-bf04-e84b86e63b4d - 59781 - db_insert_teams - STEP_OUTPUT - Yielded output "result" of type "DataFrame". (Type check passed).
+[32m2024-01-17 11:37:18 +0100[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 35cc3e44-35cc-4369-bf04-e84b86e63b4d - db_insert_teams - Writing file at: /Users/ilyapetruhnov/Documents/Projects/fanareas/fanareas/tmpip0pos1c/storage/db_insert_teams using PickledObjectFilesystemIOManager...
+[32m2024-01-17 11:37:18 +0100[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 35cc3e44-35cc-4369-bf04-e84b86e63b4d - 59781 - db_insert_teams - ASSET_MATERIALIZATION - Materialized value db_insert_teams.
+[32m2024-01-17 11:37:18 +0100[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 35cc3e44-35cc-4369-bf04-e84b86e63b4d - 59781 - db_insert_teams - HANDLED_OUTPUT - Handled output "result" using IO manager "io_manager"
+[32m2024-01-17 11:37:18 +0100[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 35cc3e44-35cc-4369-bf04-e84b86e63b4d - 59781 - db_insert_teams - STEP_SUCCESS - Finished execution of step "db_insert_teams" in 1.08s.

@@ -1,0 +1,19 @@
+[32m2024-01-17 11:36:41 +0100[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 35cc3e44-35cc-4369-bf04-e84b86e63b4d - 59628 - LOGS_CAPTURED - Started capturing logs in process (pid: 59628).
+[32m2024-01-17 11:36:41 +0100[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 35cc3e44-35cc-4369-bf04-e84b86e63b4d - 59628 - db_insert_seasons - STEP_START - Started execution of step "db_insert_seasons".
+[32m2024-01-17 11:36:41 +0100[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 35cc3e44-35cc-4369-bf04-e84b86e63b4d - db_insert_seasons - Loading file from: /Users/ilyapetruhnov/Documents/Projects/fanareas/fanareas/tmpip0pos1c/storage/seasons_df using PickledObjectFilesystemIOManager...
+[32m2024-01-17 11:36:42 +0100[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 35cc3e44-35cc-4369-bf04-e84b86e63b4d - 59628 - db_insert_seasons - ASSET_OBSERVATION - ASSET_OBSERVATION for step db_insert_seasons
+[32m2024-01-17 11:36:42 +0100[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 35cc3e44-35cc-4369-bf04-e84b86e63b4d - 59628 - db_insert_seasons - LOADED_INPUT - Loaded input "seasons_df" using input manager "io_manager", from output "result" of step "seasons_df"
+[32m2024-01-17 11:36:42 +0100[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 35cc3e44-35cc-4369-bf04-e84b86e63b4d - 59628 - db_insert_seasons - STEP_INPUT - Got input "seasons_df" of type "DataFrame". (Type check passed).
+[32m2024-01-17 11:36:42 +0100[0m - dagster - [34mINFO[0m - __ASSET_JOB - 35cc3e44-35cc-4369-bf04-e84b86e63b4d - db_insert_seasons -    id  sport_id  ...  standings_recalculated_at  games_in_current_week
+0   2         1  ...        2023-05-24 08:28:07                  False
+1   3         1  ...        2023-05-24 08:28:09                  False
+2   6         1  ...        2023-11-30 13:38:48                  False
+3   7         1  ...        2023-05-24 08:28:13                  False
+4   8         1  ...        2023-05-24 08:28:14                  False
+
+[5 rows x 12 columns]
+[32m2024-01-17 11:36:44 +0100[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 35cc3e44-35cc-4369-bf04-e84b86e63b4d - 59628 - db_insert_seasons - STEP_OUTPUT - Yielded output "result" of type "DataFrame". (Type check passed).
+[32m2024-01-17 11:36:44 +0100[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 35cc3e44-35cc-4369-bf04-e84b86e63b4d - db_insert_seasons - Writing file at: /Users/ilyapetruhnov/Documents/Projects/fanareas/fanareas/tmpip0pos1c/storage/db_insert_seasons using PickledObjectFilesystemIOManager...
+[32m2024-01-17 11:36:44 +0100[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 35cc3e44-35cc-4369-bf04-e84b86e63b4d - 59628 - db_insert_seasons - ASSET_MATERIALIZATION - Materialized value db_insert_seasons.
+[32m2024-01-17 11:36:44 +0100[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 35cc3e44-35cc-4369-bf04-e84b86e63b4d - 59628 - db_insert_seasons - HANDLED_OUTPUT - Handled output "result" using IO manager "io_manager"
+[32m2024-01-17 11:36:44 +0100[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 35cc3e44-35cc-4369-bf04-e84b86e63b4d - 59628 - db_insert_seasons - STEP_SUCCESS - Finished execution of step "db_insert_seasons" in 2.31s.
