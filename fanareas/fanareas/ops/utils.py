@@ -1,25 +1,15 @@
 import requests
 import pandas as pd
 import os
-import sqlalchemy
-import psycopg2
+from itertools import chain
 from sqlalchemy import MetaData, Table, select
 from dagster import op
+import time
 
 
 api_key = os.getenv("api_key")
 base_url = os.getenv("base_url")
-
-@op
-def create_db_connection():
-    uid = os.getenv("uid")
-    pwd = os.getenv("pwd")
-    server = os.getenv("server")
-    port = os.getenv("port")
-    db = os.getenv("db")
-    url = f"postgresql://{uid}:{pwd}@{server}:{port}/{db}"
-    engine = sqlalchemy.create_engine(url)
-    return engine
+core_url = os.getenv("core_url")
 
 @op
 def get_records(response):
@@ -51,57 +41,39 @@ def api_call(url):
         print(f"Error: {response.status_code}")
         return None
 
-@op
-def fetch_data(api_url):
+def fetch_data(context, url):
     data = []
-    while True:
-        result = api_call(api_url)
+    result = api_call(url)
+    while 'data' in result.json().keys():
         data.append(result.json()['data'])
-        api_url = result.json()['pagination']['next_page']
-        has_more = result.json()['pagination']['has_more']
-        if has_more == False:
-            break
-    result = pd.DataFrame(data[0])
-    return result
+        url = result.json()['pagination']['next_page']
+        limit = result.json()['rate_limit']['remaining']
+        if limit == 1:
+            seconds_until_reset = result.json()['rate_limit']['resets_in_seconds']
+            context.log.info(seconds_until_reset)
+            time.sleep(seconds_until_reset)
+            continue
+        else:
+            has_more = result.json()['pagination']['has_more']
+            if has_more == False:
+                break
+            result = api_call(url)
+    result_df = pd.DataFrame(list(chain(*data)))  
+    return result_df
 
 @op
-def db_insert(df: pd.DataFrame, table_name: str) -> bool:
-    conn = create_db_connection()
-    df.to_sql(table_name, con=conn, index=False, if_exists="replace")
-    return True
+def upsert(existing_df: pd.DataFrame, new_df: pd.DataFrame) -> pd.DataFrame:
+    # Perform upsert (merge) based on the 'id' column
+    merged_df = pd.concat([existing_df, new_df], ignore_index=True)
+    merged_df = merged_df.drop_duplicates(subset='id', keep='last')
+    return merged_df
 
 @op
-def db_upsert(df: pd.DataFrame, table_name: str) -> bool:
-    conn = create_db_connection()
-    engine = conn.connect()
-    ids = tuple(df['id'].unique())
-    engine.execute(f"""delete from {table_name} where id in {ids}""")
-    df.to_sql(table_name, con=conn, index=False, if_exists="append")
-    return True
-
-@op
-def get_ids_from_db_col(table_name: str):
-    engine = create_db_connection()
-
-    metadata = MetaData()
-
-    table = Table(table_name, metadata, autoload_with=engine)
-    column_name = 'id'
-    # Establish a connection
-    connection = engine.connect()
-
-    # Create a SELECT statement
-    distinct_values_query = select(table.c[column_name].distinct())
-
-    # Execute the query
-    result = connection.execute(distinct_values_query)
-
-    # Fetch the results
-    rows = result.fetchall()
-
-    # Process the results
-    results = [i[0] for i in rows]
-
-    # Close the connection
-    connection.close()
-    return results
+def flatten_list(nested_list):
+    flattened_list = []
+    for item in nested_list:
+        if isinstance(item, list):
+            flattened_list.extend(flatten_list(item))
+        else:
+            flattened_list.append(item)
+    return flattened_list
